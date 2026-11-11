@@ -1,0 +1,19 @@
+//1378-Replace Employee ID With The Unique Identifier
+SELECT euni.unique_id, e.name 
+FROM Employees e  
+LEFT JOIN EmployeeUNI euni  
+ON e.id = euni.id;
+
+
+//1068-Product Sales Analysis 1
+SELECT product_name, year,  price
+FROM Sales
+LEFT JOIN Product
+ON Sales.product_id = Product.product_id;
+
+
+//1581-Customer who visited but did not make any transactions
+select customer_id , count(visit_id) as count_no_trans from Visits
+where 
+visit_id not in (select  visit_id from Transactions)
+group by customer_id;
