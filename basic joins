@@ -17,3 +17,18 @@ select customer_id , count(visit_id) as count_no_trans from Visits
 where 
 visit_id not in (select  visit_id from Transactions)
 group by customer_id;
+
+
+//197-Rising Temperature
+SELECT w1.id
+FROM Weather w1, Weather w2
+WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;
+
+
+//1661-Average time of process per machine
+select a1.machine_id, round(avg(a2.timestamp-a1.timestamp), 3) as processing_time 
+from Activity a1
+join Activity a2 
+on a1.machine_id=a2.machine_id and a1.process_id=a2.process_id
+and a1.activity_type='start' and a2.activity_type='end'
+group by a1.machine_id
